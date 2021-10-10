@@ -1,0 +1,129 @@
+@import "../../variables.scss";
+
+input[type="text"]::-ms-clear,
+input[type="text"]::-ms-reveal {
+  display: none;
+  width: 0;
+  height: 0;
+}
+input::-webkit-search-decoration,
+input::-webkit-search-cancel-button,
+input::-webkit-search-results-button,
+input::-webkit-search-results-decoration,
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear,
+input::-ms-reveal,
+input::-ms-clear {
+  display: none;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button,
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.inp_primary,
+.inp_error,
+.inp_disabled {
+  position: relative;
+  p {
+    color: grey;
+    // margin: 5px 0;
+  }
+
+  input {
+    position: relative;
+    border: solid 2px $primary_color;
+    outline: none;
+    padding: 0.5rem 1rem;
+    width: 200px;
+    height: 100%;
+    border-radius: 5px;
+    opacity: 0.6;
+    font-size: 1.2rem;
+    
+
+    background-color: $bc_color;
+    color: $txt_color;
+
+
+    &:focus {
+      opacity: 1;
+      border: solid 2px $primary_color;
+
+      & + p {
+        opacity: 1;
+      }
+    }
+
+    & + p {
+      display: none;
+    }
+  }
+}
+
+.inp_error {
+  
+  input {
+    border: solid 2px $warning_color;
+
+
+    &:focus {
+      border: solid 2px $warning_color;
+    }
+
+    & + p {   
+      display: block;
+      position: fixed;
+      z-index: 100;
+      margin: 10px 0 0 10px;
+      padding: 10px 20px;
+      font-size: 14px;
+      border-radius: 2px;
+      color: white;
+      background-color: $warning_color;
+      border: none;
+
+      &::before {
+        content: "";
+        position: absolute;
+        top: -8px;
+        left: 5px;
+        width: 0;
+        height: 0;
+        border-left: 8px solid transparent;
+        border-right: 8px solid transparent;
+        border-bottom: 8px solid $warning_color;
+      }
+    }
+  }
+}
+
+.inp_disabled {
+  input {
+    border: solid 2px $disabled_color;
+    cursor: default;
+
+    &:focus {
+      opacity: 0.6;
+      border: solid 2px $disabled_color;
+    }
+  }
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  background-color: $bc_color !important;
+  box-shadow: $bc_color !important;
+  -webkit-text-fill-color: $txt_color !important;
+  transition: background-color 5000s ease-in-out 0s;
+}

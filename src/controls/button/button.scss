@@ -1,0 +1,54 @@
+@import "../../variables.scss";
+
+.button {
+  outline: none;
+  border: none;
+  position: relative;
+  letter-spacing: 1px;
+
+  cursor: pointer;
+  width: 200px;
+  max-height: 100%;   
+
+  padding: 0rem 1rem;
+
+  border-radius: 5px;
+  color: $txt_color;
+  font-size: 1.1rem;
+  transition: 0.3s;
+
+  &:active {
+    top: 2px;
+  }
+
+  &:hover {
+    opacity: 0.85;
+  }
+
+  &_primary {
+    background-color: $primary_color;
+  }
+
+  &_secondary {
+    background-color: $secondary_color;
+  }
+
+  &_warning {
+    background-color: $warning_color;
+  }
+
+  &_disabled {
+    cursor: default;
+    background-color: $disabled_color;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  &_small {
+    width: 130px;
+    padding: 0.5rem 0.7rem;
+    font-size: 1rem;
+  }
+}
