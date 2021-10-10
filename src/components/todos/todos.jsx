@@ -1,9 +1,11 @@
- 
-import {  useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "../../controls/button/button";
 import Input from "../../controls/input/input";
 import getTodos from "../../services/getTodos/getTodos";
 import Todo from "./todo";
+import addTodo from "../../app/actionCreators/addTodo";
+import deleteTodo from "../../app/actionCreators/deleteTodo";
+import store from "../../app/store";
 import "./todos.scss";
 
 export default function Todos() {
@@ -13,11 +15,17 @@ export default function Todos() {
     useEffect(() => {
         getTodos(10)
             .then((data) => {
-                setTodos(data)
+                data.forEach((element) => {
+                    store.dispatch(addTodo(element));
+                });
             })
             .catch((error) => alert("An error has occurred"));
-}, []);
+    }, []);
 
+    store.subscribe(() => {
+        setTodos(store.getState());
+        setNewTodo("");
+    });
 
     function handlerAddTodo() {
         const todo = {
@@ -27,14 +35,13 @@ export default function Todos() {
 
         if (!todo.title) return;
 
-        todo.id = todos.length 
-            ? todos[todos.length - 1].id + 1 
-            : todo.id = 1;
- 
+        todo.id = todos.length ? todos[todos.length - 1].id + 1 : (todo.id = 1);
+
+        store.dispatch(addTodo(todo));
     }
 
     function handlerDeleteTodo(id) {
-       
+        store.dispatch(deleteTodo(id));
     }
 
     return (
@@ -55,12 +62,7 @@ export default function Todos() {
                                   <Todo txt={todo.title} />
                               </div>
                               <div className="todos_item_delete">
-                                  <Button
-                                      txt="delete"
-                                      type='warning'
-                                      isSmall={true}
-                                      handlerClick={() => handlerDeleteTodo(todo.id)}
-                                  />
+                                  <Button txt="delete" type="warning" isSmall={true} handlerClick={() => handlerDeleteTodo(todo.id)} />
                               </div>
                           </li>
                       ))
