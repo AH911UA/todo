@@ -1,0 +1,36 @@
+@import '../../variables.scss';
+
+.todos{
+    max-width: 600px;
+    margin: 3rem auto;
+
+    .todos_title{
+        text-transform: uppercase;
+        text-align: center;
+        letter-spacing: 2px;
+        font-weight: 100;
+    }
+
+    &_item{
+        cursor: pointer;
+        align-items: center;
+        height: 100%;
+
+        &_delete{
+            overflow: hidden;
+            width: 0;
+            transition: 0.3s;
+        }
+        &:hover &_delete{
+            width:30%;
+        }
+        &_todo{ 
+            width: 100%;
+            transition: 0.3s;
+        }
+        &:hover &_todo{
+            display: block;
+            width: 70%;
+        }
+    }
+}

@@ -1,9 +1,10 @@
-import './App.css';
+import './App.scss';
+import Todos from './components/todos';
 
 function App() {
   return (
     <div className="App">
-       
+        <Todos/>
     </div>
   );
 }

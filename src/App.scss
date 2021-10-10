@@ -3,3 +3,12 @@
 }
 
  
+@import './variables.scss';
+
+.App {
+    background-color: $bc_color;
+    color: $txt_color;
+    padding: 0.1px;
+    min-height: 100vh;
+}
+ 
